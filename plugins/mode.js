@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn }) => {
     let wm = global.wm
     let _uptime = process.uptime() * 1000
@@ -39,3 +47,5 @@ function clockString(ms) {
     let sec = Math.floor((minutesms) / (1000));
     return days + " Hari " + hours + " Jam " + minutes + " Menit " + sec + " Detik";
 }
+
+export default module.exports;

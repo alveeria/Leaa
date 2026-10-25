@@ -1,4 +1,12 @@
-const { toPTT, toAudio } = require('../lib/converter')
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+const { toPTT, toAudio } = require('../legacy-lib/converter')
 
 let handler = async (m, { conn, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m
@@ -15,3 +23,5 @@ handler.tags = ['tools']
 handler.command = /^to(a(udio)?)$/i
 
 module.exports = handler
+
+export default module.exports;

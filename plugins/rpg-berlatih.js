@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 // Fungsi untuk mengubah waktu menjadi format jam:menit:detik
 function clockString(ms) {
   let h = Math.floor(ms / 3600000);
@@ -77,3 +85,4 @@ handler.rpg = true
 handler.fail = null;
 
 module.exports = handler;
+export default module.exports;

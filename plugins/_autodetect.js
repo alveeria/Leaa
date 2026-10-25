@@ -1,6 +1,15 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+import * as __baileys from '@whiskeysockets/baileys';
 /* 
 
-const { WAMessageStubType } = require('@adiwajshing/baileys');
+const { WAMessageStubType } = __baileys;
 module.exports = {
 before: async function before(m) {
     let fkon = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: 'status@broadcast' } : {}) }, message: { contactMessage: { displayName: m.name, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:RhmttDev\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
@@ -39,3 +48,5 @@ before: async function before(m) {
   }
 }
 */
+
+export default module.exports;

@@ -1,3 +1,12 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+import * as __baileys from '@whiskeysockets/baileys';
 /*di bawah ini buat pp biasa non panjang pilih salah satu*/
 let handler = async (m, { conn, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m
@@ -23,7 +32,7 @@ handler.rowner = true
 module.exports = handler
 
 /*di bawah ini buat pp panjang aktifin aja pilih salah satu*/
-// const { S_WHATSAPP_NET } = require('@adiwajshing/baileys');
+// const { S_WHATSAPP_NET } = __baileys;
 // const jimp = require('jimp');
 
 // let handler = async (m, { conn, command, usedPrefix }) => {
@@ -78,3 +87,5 @@ module.exports = handler
 //         preview: await cropped.normalize().getBufferAsync(jimp.MIME_JPEG)
 //     };
 // }
+
+export default module.exports;

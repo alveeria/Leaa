@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { isPrems, conn, text, usedPrefix, command }) => {
   const user = global.db.data.users[m.sender];
   const who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : text ? text.replace(/[@ .+-]/g, '').replace(/^\+/, '').replace(/-/g, '') + '@s.whatsapp.net' : m.sender;
@@ -111,3 +119,4 @@ function capitalizeFirstLetter(str) {
   }
   return words.join(" ");
 }
+export default module.exports;

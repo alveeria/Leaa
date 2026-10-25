@@ -1,3 +1,12 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+import * as __baileys from '@whiskeysockets/baileys';
 const { 
     BufferJSON, 
     WA_DEFAULT_EPHEMERAL, 
@@ -8,14 +17,14 @@ const {
     prepareWAMessageMedia, 
     areJidsSameUser, 
     getContentType 
-} = require('@adiwajshing/baileys')
+} = __baileys
 
 process.env.TZ = 'Asia/Jakarta'
 let fs = require('fs')
 let path = require('path')
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
-let levelling = require('../lib/levelling')
+let levelling = require('../legacy-lib/levelling')
 let os = require('os')
 
 let arrayMenu = ['all', 'main', 'ai', 'downloader', 'jkt48', 'anime', 'rpg', 'rpgG', 'sticker', 'xp', 'fun', 'game', 'group', 'asupan', 'randomnime', 'nsfw', 'nsfwnime', 'info', 'internet', 'search', 'islamic', 'kerang', 'maker', 'news', 'owner', 'voice', 'quotes', 'stalk', 'store', 'shortlink', 'tools', 'advanced', 'anonymous'];
@@ -268,3 +277,4 @@ const thumbnails = [
     "https://files.catbox.moe/pjfzif.jpg",
     "https://files.catbox.moe/3xha3s.jpg"
 ];
+export default module.exports;

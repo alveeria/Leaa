@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 
 //danapura133
 //dana_putra13
@@ -985,3 +993,4 @@ meaning: khodam.meaning,
 
 // sekali gua lihat ini sc di jual auto enc semua fitur baru
 //INI SC FREE
+export default module.exports;

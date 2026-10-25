@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender]
     let id = m.sender
@@ -86,3 +94,4 @@ function clockString(ms) {
     if (s) result.push(`${s} detik`)
     return result.length ? result.join(' ') : 'kurang dari 1 detik'
 }
+export default module.exports;

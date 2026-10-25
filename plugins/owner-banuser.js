@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn, isOwner, text }) => {
 	if (!text) throw 'Masukkan user/id group yang ingin di ban\n\nExample: .ban 6282361160044 atau .ban 2837372829@g.us'
   let who
@@ -26,3 +34,5 @@ handler.command = /^ban(chat)?$/i
 
 handler.owner = true
 module.exports = handler
+
+export default module.exports;

@@ -1,8 +1,16 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 //cuma bisa di gc
 
 let fetch = require ("node-fetch");
-let uploadFile = require ("../lib/uploadFile.js");
-let uploadImage = require ("../lib/uploadImage.js");
+let uploadFile = require ("../legacy-lib/uploadFile.js");
+let uploadImage = require ("../legacy-lib/uploadImage.js");
 const commandList = ["upsw"];
 
 const mimeAudio = "audio/mpeg";
@@ -116,3 +124,4 @@ function getRandomHexColor() {
 			.padStart(6, "0")
 	);
 }
+export default module.exports;

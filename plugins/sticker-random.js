@@ -1,6 +1,14 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 var { 
 sticker5 
-} = require('../lib/sticker')
+} = require('../legacy-lib/sticker')
 var handler = async (m, {
  conn, 
  command
@@ -42,3 +50,5 @@ handler.command = handler.help = ['dinokuning', 'patrick', 'spongebob', 'doge', 
 handler.tags = ['sticker']
 handler.limit = true
 module.exports = handler
+
+export default module.exports;

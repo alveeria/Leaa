@@ -1,58 +1,55 @@
-const cluster = require('cluster');
-const { spawn } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
-const express = require('express');
-const app = express();
+const __dirname = import.meta.dirname;
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import cluster from 'cluster';
+import { spawn } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
+import http from 'http';
 
-// Express.js 
-const ports = [4000, 3000, 5000, 8000, 8080, 4444];
-let availablePortIndex = 0;
+const nodeVersion = parseInt(process.versions.node.split('.')[0]);
+if (nodeVersion < 22) {
+  console.error(`\x1b[31m❌ Node.js ${nodeVersion} is not supported. Please use Node.js 22 or higher.\x1b[0m`);
+  process.exit(1);
+}
 
-function checkPort(port) {
-  return new Promise((resolve, reject) => {
-    const server = app.listen(port, () => {
-      server.close();
-      resolve(true);
-    });
-    server.on('error', reject);
+// HTTP Server
+const server = http.createServer((req, res) => {
+  if (req.method === 'GET' && req.url === '/') {
+    res.setHeader('Content-Type', 'application/json');
+    const data = {
+      status: 'true',
+      message: 'Bot Successfully Activated!',
+      author: 'BETABOTZ'
+    };
+    res.writeHead(200);
+    res.end(JSON.stringify({ response: data }, null, 2));
+  } else {
+    res.writeHead(404);
+    res.end();
+  }
+});
+
+function listenOnPort(port) {
+  server.once('error', (e) => {
+    if (e.code === 'EADDRINUSE' && port !== 0) {
+      console.warn(`Port ${port} port sudah dipakai, mencoba port random lain`);
+      listenOnPort(0);
+      return;
+    }
+
+    console.error('gagal:', e);
+    process.exit(1);
+  });
+
+  server.listen(port, '0.0.0.0', () => {
+    const actualPort = server.address().port;
+    console.log('\x1b[33m%s\x1b[0m', `Port ${actualPort} is open`);
   });
 }
 
-async function startServer() {
-  const port = ports[availablePortIndex];
-  const isPortAvailable = await checkPort(port);
-
-  if (isPortAvailable) {
-    console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${port} is open`);
-    app.get('/', (req, res) => {
-      res.setHeader('Content-Type', 'application/json');
-      const data = {
-        status: 'true',
-        message: 'Bot Successfully Activated!',
-        author: 'LEASY'
-      };
-      const result = {
-        response: data
-      };
-      res.send(JSON.stringify(result, null, 2));
-    });
-  } else {
-    console.log(`Port ${port} is already in use. Trying another port...`);
-    availablePortIndex++;
-
-    if (availablePortIndex >= ports.length) {
-      console.log('No more available ports. Exiting...');
-      process.exit(1);
-    } else {
-      ports[availablePortIndex] = parseInt(port) + 1;
-      startServer();
-    }
-  }
-}
-
-startServer();
+listenOnPort(Number(process.env.PORT) || 0);
 
 let isRunning = false;
 
@@ -60,7 +57,11 @@ function start(file) {
   if (isRunning) return;
   isRunning = true;
 
-  const args = [path.join(__dirname, file), ...process.argv.slice(2)];
+  const resolvedFile = path.resolve(__dirname, path.basename(file));
+  if (!resolvedFile.startsWith(path.resolve(__dirname) + path.sep)) {
+    throw new Error('Invalid file path');
+  }
+  const args = [resolvedFile, ...process.argv.slice(2)];
   const p = spawn(process.argv[0], args, {
     stdio: ["inherit", "inherit", "inherit", "ipc"],
   });
@@ -110,8 +111,8 @@ function start(file) {
     }
     console.log('\x1b[33m%s\x1b[0m', `🟡 Found ${files.length} plugins in folder ${pluginsFolder}`);
     try {
-      require.resolve('@adiwajshing/baileys');
-      console.log('\x1b[33m%s\x1b[0m', `🟡 Baileys library version ${require('@adiwajshing/baileys/package.json').version} is installed`);
+      require.resolve('@whiskeysockets/baileys');
+      console.log('\x1b[33m%s\x1b[0m', `🟡 Baileys library version ${require('@whiskeysockets/baileys/package.json').version} is installed`);
     } catch (e) {
       console.error('\x1b[31m%s\x1b[0m', `❌ Baileys library is not installed`);
     }
@@ -122,9 +123,7 @@ function start(file) {
   console.log(`💾 \x1b[33mTotal RAM: ${ramInGB.toFixed(2)} GB\x1b[0m`);
   const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
   console.log(`💽 \x1b[33mFree RAM: ${freeRamInGB.toFixed(2)} GB\x1b[0m`);
-  console.log('\x1b[33m%s\x1b[0m', `📃 Script by LEASY`);
-  console.log('\x1b[33m%s\x1b[0m', `🔗 Github: https://github.com/BOTCAHX/RTXZY-MD`);	
-
+  console.log("\x1b[33m%s\x1b[0m", `📃 Script by BETABOTZ`);
   setInterval(() => {}, 1000);
 }
 

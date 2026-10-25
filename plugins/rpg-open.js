@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn, command, args, text, usedPrefix }) => {
   try {
     let bruh = `${usedPrefix}open <crate name> <  10 | 100 | 1000 >\n\nContoh penggunaan: *${usedPrefix}open common 10*\n\nlist crate:\n*common*\n*uncommon*\n*mythic*\n*legendary*`
@@ -459,3 +467,4 @@ module.exports = handler
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
 }
+export default module.exports;

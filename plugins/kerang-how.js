@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn, command, text }) => {
   if (!text) throw `Siapa Yang *${command.replace('how', '').toUpperCase()}*`
   conn.reply(m.chat, `
@@ -24,3 +32,5 @@ handler.botAdmin = false
 handler.fail = null
 
 module.exports = handler
+
+export default module.exports;

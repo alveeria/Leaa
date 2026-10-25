@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 //free source code store by betabotz di buat oleh danapura133
 //silahkan di ganti ganti sesuka hati kalian
 
@@ -170,3 +178,4 @@ module.exports.all = async (message) => {
 // bebas ubah karena open source
 // danaputra133
 // tutorial pakai ada di: https://youtu.be/P7K5ycatYJA
+export default module.exports;

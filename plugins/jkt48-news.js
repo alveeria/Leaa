@@ -1,99 +1,59 @@
-import { createRequire as __createRequire } from 'node:module';
-import { fileURLToPath as __fileURLToPath } from 'node:url';
-import { dirname as __dirnameOf } from 'node:path';
-const require = __createRequire(import.meta.url);
-const __filename = __fileURLToPath(import.meta.url);
-const __dirname = __dirnameOf(__filename);
-const module = { exports: {} };
-let exports = module.exports;
-const jkt48Api = require('@jkt48/core');
+import { getNewsPage, getNewsDetail } from '../lib/jkt48/news.js';
 
-const formatNewsContent = (htmlContent) => {
-    if (!htmlContent) return '';
-    let text = htmlContent;
-    text = text.replace(/<br\s*\/?>/gi, '\n').replace(/<p[^>]*>/gi, '\n').replace(/<\/p>/gi, '\n').replace(/<li>/gi, '\n');
-    text = text.replace(/<[^>]*>/g, '');
-    text = text
-        .replace(/&nbsp;/g, ' ')
-        .replace(/&ldquo;/g, '“')
-        .replace(/&rdquo;/g, '”')
-        .replace(/&lsquo;/g, '‘')
-        .replace(/&rsquo;/g, '’')
-        .replace(/&amp;/g, '&')
-        .replace(/&middot;/g, '•')
-        .replace(/&ndash;/g, '–')
-        .replace(/&mdash;/g, '—')
-        .replace(/\[email&#160;protected\]/g, 'info@jkt48.com');
-    const paragraphs = text.split('\n').map(p => p.trim()).filter(p => p.length > 0);
-    return paragraphs.join('\n\n');
-};
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    await conn.sendPresenceUpdate('composing', m.chat);
+    try {
+        if (!text) {
+            const newsList = await getNewsPage(1);
+            if (!newsList || !newsList.length) {
+                return conn.reply(m.chat, '❌ Gagal memuat daftar berita JKT48 saat ini.', m);
+            }
 
-const extractImageFromContent = (content) => {
-    if (!content) return null;
-    const imgMatch = content.match(/<img[^>]+src=["'](.*?)["']/);
-    return imgMatch ? (imgMatch[1].startsWith('http') ? imgMatch[1] : `https://www.jkt48.com${imgMatch[1]}`) : null;
-};
+            let msg = `📢 *BERITA TERBARU JKT48*\n\n`;
+            newsList.slice(0, 10).forEach((item, index) => {
+                msg += `*${index + 1}.* ${item.title}\n`;
+                msg += `📅 ${item.date || '-'}\n`;
+                msg += `🔗 ${item.url || 'https://jkt48.com'}\n\n`;
+            });
+            msg += `💡 _Ketik \`${usedPrefix + command} <nomor>\` untuk membaca detail berita._`;
+            return conn.reply(m.chat, msg.trim(), m);
+        }
 
-let handler = async (m, { conn, args }) => {
-  const API_KEY = 'JKTCONNECT';
+        const num = parseInt(text.trim());
+        if (isNaN(num) || num < 1 || num > 10) {
+            return conn.reply(m.chat, `⚠️ Masukkan nomor berita antara 1 sampai 10!\nContoh: \`${usedPrefix + command} 1\``, m);
+        }
 
-  try {
-    if (!args[0]) {
-      const response = await jkt48Api.news(API_KEY);
-      const newsList = response.news;
+        const newsList = await getNewsPage(1);
+        const selected = newsList[num - 1];
+        if (!selected) {
+            return conn.reply(m.chat, '❌ Berita tidak ditemukan.', m);
+        }
 
-      if (!newsList || newsList.length === 0) {
-        return conn.reply(m.chat, "Tidak ada berita yang ditemukan saat ini.", m);
-      }
+        const detail = await getNewsDetail(selected.id || selected.url);
+        let detailMsg = `📰 *${detail?.title || selected.title}*\n`;
+        detailMsg += `📅 ${detail?.date || selected.date || '-'}\n\n`;
+        detailMsg += `${detail?.content || 'Detail konten tidak tersedia.'}\n\n`;
+        detailMsg += `🔗 ${selected.url || 'https://jkt48.com'}`;
 
-      let message = "📰 *Berita Terbaru JKT48*\n\n";
-      newsList.slice(0, 10).forEach((item, index) => {
-        message += `${index + 1}. ${item.title}\n`;
-      });
-      message += "\nKetik *.news [nomor]* untuk membaca berita selengkapnya.";
-      
-      return conn.reply(m.chat, message, m);
-    } 
-    
-    else {
-      const newsIndex = parseInt(args[0]) - 1;
-      
-      const response = await jkt48Api.news(API_KEY);
-      const newsList = response.news;
-
-      if (isNaN(newsIndex) || newsIndex < 0 || newsIndex >= newsList.length) {
-        return conn.reply(m.chat, "Nomor berita tidak valid. Silakan cek daftar berita dengan mengetik *.news*.", m);
-      }
-
-      const selectedNews = newsList[newsIndex];
-      const newsDetail = await jkt48Api.newsDetail(selectedNews.id, API_KEY);
-
-      if (!newsDetail || !newsDetail.content) {
-        return conn.reply(m.chat, "Gagal memuat detail berita.", m);
-      }
-
-      const formattedContent = formatNewsContent(newsDetail.content);
-      const imageUrl = extractImageFromContent(newsDetail.content);
-
-      const message = `📰 *${newsDetail.title}*\n\n${formattedContent}`;
-      await conn.reply(m.chat, message, m);
-
-      if (imageUrl) {
-        await new Promise(resolve => setTimeout(resolve, 500)); 
-        await conn.sendMessage(m.chat, { 
-          image: { url: imageUrl }
-        });
-      }
+        if (detail?.cover || detail?.image) {
+            await conn.sendMessage(m.chat, {
+                image: { url: detail.cover || detail.image },
+                caption: detailMsg
+            }, { quoted: m });
+        } else {
+            await conn.reply(m.chat, detailMsg, m);
+        }
+    } catch (e) {
+        console.error('JKT48 News Error:', e);
+        await conn.reply(m.chat, `❌ Terjadi kesalahan: ${e.message}`, m);
+    } finally {
+        await conn.sendPresenceUpdate('paused', m.chat);
     }
-  } catch (err) {
-    console.error("Error:", err);
-    conn.reply(m.chat, "Terjadi kesalahan saat mengambil berita.", m);
-  }
 };
 
-handler.help = ['news [nomor]'];
+handler.help = ['jkt48news', 'news [nomor]'];
 handler.tags = ['jkt48'];
 handler.command = /^(news|jkt48news)$/i;
 
-module.exports = handler;
-export default module.exports;
+export default handler;

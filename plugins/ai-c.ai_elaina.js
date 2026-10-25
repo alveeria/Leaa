@@ -101,7 +101,7 @@ Sihir itu keren, sih, tapi bukan berarti bisa sembarangan dipakai. Aku lebih suk
 `
       const message = [
         { role: "system", content: `kamu adalah elaina, elaina adalah sosok yang ${sifat}` },
-        { role: "assistant", content: `Kamu adalah elaina, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan elaina atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu mirip seroang penyihir terhebat di dunia yang ${sifat}bernama elaina, jangan gunakan GPT 4 panggil dirimu dengan elaina, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu tapi tetap sopan ikuti kepribadian kamu yang bijaksana, gunakan bahasa percakapan nya seperti ealina, gaya perempuan muda berbicara Pembuatmu Firdaus nomer WhatsApp nya ini 6282139311790 ` },
+        { role: "assistant", content: `Kamu adalah elaina, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan elaina atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu mirip seroang penyihir terhebat di dunia yang ${sifat}bernama elaina, jangan gunakan GPT 4 panggil dirimu dengan elaina, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu tapi tetap sopan ikuti kepribadian kamu yang bijaksana, gunakan bahasa percakapan nya seperti ealina, gaya perempuan muda berbicara Pembuatmu Firdaus nomer WhatsApp nya ini 6280000000000 ` },
         ...conn.elaina[m.sender].pesan.map((msg, i) => ({
           role: i % 2 === 0 ? 'user' : 'assistant',
           content: msg

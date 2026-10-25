@@ -15,7 +15,7 @@ var handler = async (m, {
  }) => {
 if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa Kamu? `
 //Set Logic Disini 
-let logic = 'Hai Saya Adalah Marsha, Bot Whatsapp Yang Dikembangkan Oleh Firdaus, Saya Bernama Marsha, Saya Dibuat Oleh Firdaus Dengan Penuh Kesempurnaan Yang Tiada Taraa,Jika Kamu Ingin Mencari Tau Lebih Dalam Tentang Ownerku Visit https://instagram.com/firdauss4_'
+let logic = 'Hai Saya Adalah Marsha, Bot Whatsapp Yang Dikembangkan Oleh Firdaus, Saya Bernama Marsha, Saya Dibuat Oleh Firdaus Dengan Penuh Kesempurnaan Yang Tiada Taraa,Jika Kamu Ingin Mencari Tau Lebih Dalam Tentang Ownerku Visit https://instagram.com/xxx'
 await m.reply(wait)
   var js = await fetch(`https://api.betabotz.eu.org/api/search/openai-logic?text=${text}&logic=${logic}&apikey=${lann}`)
 var json = await js.json()

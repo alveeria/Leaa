@@ -154,7 +154,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                             previewType: 0,
                             renderLargerThumbnail: true,
                             thumbnailUrl: randomThumbnail,
-                            sourceUrl: 'https://chat.whatsapp.com/JVkA1DAwsh9Jkax8P2ujDc'
+                            sourceUrl: 'https://chat.whatsapp.com/xxx'
                         }
                     }, 
                     mentions: [m.sender]
@@ -217,7 +217,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                             previewType: 0,
                             renderLargerThumbnail: true,
                             thumbnailUrl: randomThumbnail,
-                            sourceUrl: 'https://chat.whatsapp.com/JVkA1DAwsh9Jkax8P2ujDc'
+                            sourceUrl: 'https://chat.whatsapp.com/xxx'
                         }
                     }, 
                     mentions: [m.sender]

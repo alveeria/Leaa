@@ -63,7 +63,7 @@ let handler = async (m, { conn }) => {
 
     await delay(2000)
 
-    const ownerJid = '6282139311790@s.whatsapp.net'
+    const ownerJid = '6280000000000@s.whatsapp.net'
     let result
 
     // Tentukan hasil pertarungan

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const { getTheater, getTheaterDetail } = require("jkt48connect-cli");
 
 // 4. Dibuat fungsi bantuan untuk menghindari duplikasi kode
@@ -114,3 +122,4 @@ handler.tags = ['jkt48'];
 handler.command = /^(theaterschedule|jadwalteater|theater)$/i;
 
 module.exports = handler;
+export default module.exports;

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const cooldown = 300000; // Cooldown default (5 menit dalam milidetik)
 const cooldownAfterWork = 5 * 60 * 1000; // Cooldown setelah bekerja selama 5 menit (dalam milidetik)
 
@@ -77,3 +85,4 @@ handler.rpg = true;
 handler.limit = true;
 
 module.exports = handler;
+export default module.exports;

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const cooldown = 0;
 
 let handler = async (m, { conn, usedPrefix, args, text }) => {
@@ -116,3 +124,4 @@ function toSimple(number) {
     const formatter = Intl.NumberFormat('en', { maximumFractionDigits: 1 });
     return formatter.format(simplified) + suffix;
 }
+export default module.exports;

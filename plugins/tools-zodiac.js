@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = (m, { usedPrefix, command, text }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} 2002 02 25`
 
@@ -49,3 +57,5 @@ function getZodiac(month, day) {
     let d = new Date(1970, month - 1, day)
     return zodiak.find(([_,_d]) => d >= _d)[0]
 }
+
+export default module.exports;

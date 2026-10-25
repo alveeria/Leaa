@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let fs = require('fs')
 let handler  = async (m, { conn, text }) => {
 m.reply('Tunggu Sebentar, Proses Getting File database.json')
@@ -24,3 +32,5 @@ const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
 const randomID = length => require('crypto').randomBytes(Math.ceil(length * .5)).toString('hex').slice(0, length)
+
+export default module.exports;

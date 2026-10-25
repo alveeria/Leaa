@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 // Total Spam terdeteksi sebelum ban
 const SPAM_TOTALSPAM = 5;
 // Waktu untuk mereset counter spam (dalam milidetik)
@@ -176,3 +184,4 @@ exports.before = async function (m) {
         }, SPAM_RESET_TIME);
     }
 };
+export default module.exports;

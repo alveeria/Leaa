@@ -1,3 +1,12 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+import * as __baileys from '@whiskeysockets/baileys';
 var name = global.nameowner
 var numberowner = global.numberowner
 var gmail = global.mail
@@ -13,7 +22,7 @@ proto,
 getMessage, 
 generateWAMessageContent, 
 prepareWAMessageMedia 
-} = require("@adiwajshing/baileys");
+} = __baileys;
 var handler = async (m, {
 conn
 }) => {
@@ -49,3 +58,5 @@ handler.command = handler.help = ['owner', 'creator'];
 handler.tags = ['info'];
 handler.limit = true;
 module.exports = handler;
+
+export default module.exports;

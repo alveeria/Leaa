@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const free = 5000
 const prem = 10000
 const moneyfree = 5000
@@ -46,3 +54,4 @@ function msToTime(duration) {
 
   return hours + " jam " + minutes + " menit " + seconds + " detik"
 }
+export default module.exports;

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const pets = ['kucing', 'anjing', 'serigala', 'phonix', 'rubah']
 
 let handler = async (m, { conn, text: txt, usedPrefix, participants }) => {
@@ -70,3 +78,4 @@ const alasanKalah = ['Noob', 'Cupu', 'Kurang hebat', 'Ampas kalahan', 'Gembel ka
 const alasanMenang = ['Hebat', 'Pro', 'Master Game', 'Legenda game', 'Sangat Pro', 'Rajin Nge-push']
 
 const delay = time => new Promise(res => setTimeout(res, time));
+export default module.exports;

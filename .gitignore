@@ -1,0 +1,13 @@
+node_modules
+package-lock.json
+database.json
+sessions
+.env
+tmp
+.DS_Store
+src/.DS_Store
+*.DS_Store
+bun.lock
+plugins/info-listgroup.json
+/database
+/plugins2

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const {
     emoji_role,
     sesi,
@@ -36,7 +44,7 @@ const {
     run_vote,
     run_malam,
     run_pagi
-} = require('../lib/werewolf.js')
+} = require('../legacy-lib/werewolf.js')
 
 let handler = async (m, { conn, command, usedPrefix, args }) => {
     let { sender, chat } = m
@@ -102,3 +110,5 @@ let handler = async (m, { conn, command, usedPrefix, args }) => {
 handler.command = /^((ww|werewolf)pc)$/i
 handler.private = true
 module.exports = handler
+
+export default module.exports;

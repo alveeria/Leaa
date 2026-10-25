@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 /* Auto-AI Sesi X Pinterest (Foto) X YouTube Mp3/Mp4 (Lagu/Video) 
 Creator: Shina Arthenon (ALC) 
 MY Ch  : https://whatsapp.com/channel/0029VaNImZtKbYMRX8M08D08
@@ -135,3 +143,4 @@ handler.help = ['betaai [on/off]'];
  
 module.exports = handler;
 //Hapus Teros Wm ny, Kek Bocah Aja🤮🤮🤮
+export default module.exports;

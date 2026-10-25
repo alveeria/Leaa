@@ -1,9 +1,17 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 /* TITENI NEK DIHAPUS
 * BY NAAAZZZ
 * NANDA
 * JOIN SL COMMUNITY 
 */
-const { drawBoard } = require('../lib/ular_tangga.js');
+const { drawBoard } = require('../legacy-lib/ular_tangga.js');
 
 const getRandom = function (array) {
 			return array[Math.floor(Math.random() * array.length)]
@@ -179,3 +187,4 @@ function timeToFixed(milliseconds) {
         var remainingSeconds = seconds % 60;
         return hours + ' Jam ' + minutes + ' Menit ' + remainingSeconds + ' Detik';
     }
+export default module.exports;

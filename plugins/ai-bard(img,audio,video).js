@@ -1,6 +1,14 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const fetch = require('node-fetch');
-const uploader = require('../lib/uploadImage');
-const uploadFile = require('../lib/uploadFile');
+const uploader = require('../legacy-lib/uploadImage');
+const uploadFile = require('../legacy-lib/uploadFile');
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) throw `Reply media with text\nExample: ${usedPrefix + command} what is this?`;
@@ -51,3 +59,4 @@ handler.command = /^(bardimg|bardimage|bardvideo|bardaudio)$/i;
 handler.limit = false;
 
 module.exports = handler;
+export default module.exports;

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const badwordRegex = /\b(anj(ing|g)|asw|kont(ol|i)|to?lo?l|gbl?k|bgsd|ajn|baj(ingan|ing)|ba?ngs(at|ad)|mem[ee]k|p[ee]p[ee]k|m[ee]ki|jilm[ee]k|titi?t|p[ee]l[ee]r|t[ee]t[ee]k|tok[ee]t|ng[ee]w[ee]|g[uo]bl[uo]k|t[ou]l[ou]l|idi[ou]t|ng[ee]nt[ou]t|j[ee]mbut|b[ee]g[ou]|dajal|janc[uo]k|pant[ee]k|puk[ii]ma?k|kimak|kampang|l[ou]nt[ee]|c[ou]lim[ee]k|p[ee]lacur|h[ee]nc[ee]ut|nigga|mmk|mmek|memk|kntl|fuck|dick|bitch|tits|bastard|assh[ou]l[ee]|cuki|peju|ajg|cok|cuk|mmk|njing|bgst|jink|kw[ou]nt[ou]l|j[ee]mb[ou]d|[ee]nt[ou][dt]|lacur|hamilin|kentu|kentod|entot|entod|jembod|bokep|jembud|jembot|jembut|puki|ku[ee]w[ee]|sial(an)?|kampret|bego|keparat|brengsek|kirik|kafir|bajul|perek|bencong|banci|cacat|asu|bajing|(ta[iy]|ta[iy]k)|anjrit|kunyuk|babi|monyet|setan|bispak|jablay|jembel|coli|bokin)\b/gi;
 
 let handler = m => m; // Handler ini hanya untuk mengekspor fungsi 'before'
@@ -37,3 +45,4 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin }) {
 }
 
 module.exports = handler;
+export default module.exports;

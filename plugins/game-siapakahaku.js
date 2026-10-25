@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let fetch = require('node-fetch')
 
 let timeout = 100000
@@ -42,3 +50,4 @@ module.exports = handler
 
 // tested di bileys versi 6.5.0 dan sharp versi 0.30.5
 // danaputra133
+export default module.exports;

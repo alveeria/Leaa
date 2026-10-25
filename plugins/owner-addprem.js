@@ -1,4 +1,13 @@
-const { MessageType } = require('@adiwajshing/baileys').default;
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+import * as __baileys from '@whiskeysockets/baileys';
+const { MessageType } = __baileys.default;
 
 let handler = async (m, { conn, text, usedPrefix }) => {
   function no(number){
@@ -41,3 +50,4 @@ module.exports = handler;
 
 
 // hapis skibidiiii
+export default module.exports;

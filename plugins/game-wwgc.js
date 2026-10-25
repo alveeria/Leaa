@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const jimp = require('jimp')
 
 const resize = async (image, width, height) => {
@@ -44,7 +52,7 @@ const {
     run_vote,
     run_malam,
     run_pagi
-} = require('../lib/werewolf')
+} = require('../legacy-lib/werewolf')
 
 let thumb =
     "https://user-images.githubusercontent.com/72728486/235316834-f9f84ba0-8df3-4444-81d8-db5270995e6d.jpg";
@@ -399,3 +407,5 @@ handler.tags = ['game'];
 handler.command = ['ww','werewolf'];
 handler.group = true;
 module.exports = handler
+
+export default module.exports;

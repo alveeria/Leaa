@@ -1,4 +1,12 @@
-const { sKata, cKata } = require('../lib/sambung-kata')
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+const { sKata, cKata } = require('../legacy-lib/sambung-kata')
 
 let handler = m => m
 
@@ -80,3 +88,5 @@ async function genKata() {
 function rwd(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
+export default module.exports;

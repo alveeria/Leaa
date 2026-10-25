@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) return m.reply(`Menggunakan perintah\n\n*${usedPrefix + command}* Halo apa? @${m.sender.split`@`[0]} tidak ada dan Anda`, null, { mentions: [m.sender] })
   let cm = copy(m)
@@ -25,3 +33,4 @@ module.exports = handler
 function copy(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
+export default module.exports;

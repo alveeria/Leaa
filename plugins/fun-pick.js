@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { text, args, participants, command }) => {
     if (args[0] < 0, args.length < 2) throw 'Example: #pick 15 gay'
     let users = participants.map(u => u.jid)
@@ -13,3 +21,5 @@ handler.tags = ['fun']
 handler.command = /^pick/i
 
 module.exports = handler
+
+export default module.exports;

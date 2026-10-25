@@ -1,5 +1,13 @@
-const uploadFile = require('../lib/uploadFile');
-const uploadImage = require('../lib/uploadImage');
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+const uploadFile = require('../legacy-lib/uploadFile');
+const uploadImage = require('../legacy-lib/uploadImage');
 
 function formatBytes(bytes, decimals = 2) {
     if (bytes === 0) return '0 Bytes';
@@ -48,3 +56,4 @@ handler.command = /^(upload|tourl|u)$/i;
 handler.premium = false;
 
 module.exports = handler;
+export default module.exports;

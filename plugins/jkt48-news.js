@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const jkt48Api = require('@jkt48/core');
 
 const formatNewsContent = (htmlContent) => {
@@ -88,3 +96,4 @@ handler.tags = ['jkt48'];
 handler.command = /^(news|jkt48news)$/i;
 
 module.exports = handler;
+export default module.exports;

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const format = (num) => {
   const n = String(num), p = n.indexOf(".");
   return n.replace(/\d(?=(?:\d{3})+(?:\.|$))/g, (m, i) => p < 0 || i < p ? `${m},` : m);
@@ -73,3 +81,4 @@ handler.group = true;
 handler.limit = false; // Set ke false agar tidak memakan limit
 
 module.exports = handler;
+export default module.exports;

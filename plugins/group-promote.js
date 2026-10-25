@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
     if (m.isBaileys) return;
     if (!(isAdmin || isOwner)) {
@@ -42,3 +50,4 @@ let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
   
   //fix bagian ketika comamnd berjalan mreplay tidak mau terkirim
   //m.reply('Sukses promote @${usr.split('@')[0]}!', null, {
+export default module.exports;

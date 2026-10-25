@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 /*
 *<>JADIADMIN & DEMOTE PAKAI WAKTU, JADI JIKA WAKTU HABIS MISAL YANG JADIADMIN, MAKA KALO WAKTU HABIS AKAN TERDEMOTE OTOMATIS, BEGITUPUN YANG DEMOTE, MAKA AKAN KEDEMOTE DAN AKAN MENJADI ADMIN KEMBALI SESUAI WAKTU TERSEBUT!!<>*
 SOURCE: https://whatsapp.com/channel/0029VaJYWMb7oQhareT7F40V
@@ -89,3 +97,4 @@ HAPUS WM=SDM RENDAH
 "aku janji tidak akan hapus wm ini"
 KAMIS, 28 NOVEMBER 2024 09:35
 */
+export default module.exports;

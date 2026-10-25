@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 const { sKata, cKata } = require('.././lib/sambung-kata');
 
 const game = `• *S A M B U N G - K A T A*
@@ -165,3 +173,4 @@ function filter(text) {
         return resu + misah[misah.length - 1];
     }
 }
+export default module.exports;

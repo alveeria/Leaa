@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn, isOwner, text }) => {
 	if (!text) throw 'Masukkan user/id group yang ingin di unban\n\nExample: .unban 6282361160044 atau .ban 73647438@g.us'
   let who
@@ -26,3 +34,5 @@ handler.command = /^unban(chat)?$/i
 
 handler.owner = true
 module.exports = handler
+
+export default module.exports;

@@ -1,3 +1,11 @@
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
 let handler = async (m, { conn, usedPrefix, owner }) => {
     try {
         let user = global.db.data.users[m.sender]
@@ -176,3 +184,4 @@ function clockString(ms) {
     let s = Math.floor(ms / 1000) % 60 // Seconds
     return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
+export default module.exports;

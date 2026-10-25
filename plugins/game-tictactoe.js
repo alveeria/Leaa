@@ -1,4 +1,12 @@
-const TicTacToe = require("../lib/tictactoe")
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+const TicTacToe = require("../legacy-lib/tictactoe")
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     conn.game = conn.game ? conn.game : {}
@@ -64,3 +72,5 @@ handler.tags = ['game']
 handler.command = /^(tictactoe|t{3})$/
 
 module.exports = handler
+
+export default module.exports;

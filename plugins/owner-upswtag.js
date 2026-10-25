@@ -1,9 +1,18 @@
-// --- Menggunakan '@adiwajshing/baileys' ---
+import { createRequire as __createRequire } from 'node:module';
+import { fileURLToPath as __fileURLToPath } from 'node:url';
+import { dirname as __dirnameOf } from 'node:path';
+const require = __createRequire(import.meta.url);
+const __filename = __fileURLToPath(import.meta.url);
+const __dirname = __dirnameOf(__filename);
+const module = { exports: {} };
+let exports = module.exports;
+import * as __baileys from '@whiskeysockets/baileys';
+// --- Menggunakan '@whiskeysockets/baileys' ---
 const {
     generateWAMessage,
     STORIES_JID,
     generateWAMessageFromContent
-} = require('@adiwajshing/baileys');
+} = __baileys;
 
 // Helper functions
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -177,3 +186,4 @@ handler.command = ["upswtag"];
 handler.owner = true;
 
 module.exports = handler;
+export default module.exports;
